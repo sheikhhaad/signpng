@@ -6,6 +6,10 @@ export const metadata = {
   description:
     "Convert your handwritten signature to a transparent PNG instantly. 100% private, browser-side processing. No more white backgrounds on your digital signatures.",
   keywords: [
+    "bg remover",
+    "bg remover online",
+    "signature to transparent png",
+    "signature to png",
     "signature to transparent png",
     "remove signature background",
     "signature maker",
