@@ -1,35 +1,43 @@
 import "./globals.css";
 
+// Next.js recognizes 'metadata' variable name for SEO
 export const metadata = {
-  metadataBase: new URL('https://signpng.com'),
-  title: {
-    default: "SignPNG | Convert Signature Image to Transparent PNG Online",
-    template: "%s | SignPNG"
-  },
+  title: "SignPNG | Convert Signature to Transparent PNG Online (Free)",
   description:
-    "Fast, free, and secure tool to remove white background from your signature images. Convert JPG/PNG to transparent PNG instantly in your browser.",
-  keywords:
-    "signature to png, white background remover, transparent signature, png converter",
+    "Convert your handwritten signature to a transparent PNG instantly. 100% private, browser-side processing. No more white backgrounds on your digital signatures.",
+  keywords: [
+    "signature to transparent png",
+    "remove signature background",
+    "signature maker",
+    "digital signature converter",
+    "sign png",
+  ],
+  authors: [{ name: "SignPNG" }],
+  metadataBase: new URL("https://signpng.vercel.app"),
   openGraph: {
-    title: "SignPNG | Free Online Signature Background Remover",
-    description: "Remove white backgrounds from digital signatures instantly in your browser using our free, secure, no-upload tool.",
-    url: "https://signpng.com",
+    title: "SignPNG - Transparent Signature Maker",
+    description:
+      "Fast, free, and secure way to clean up your signature background.",
+    url: "https://signpng.vercel.app/",
     siteName: "SignPNG",
+    type: "website",
     images: [
       {
-        url: "/og-image.png",
+        url: "/og-image.png", // Public folder mein ye image honi chahiye
         width: 1200,
         height: 630,
+        alt: "SignPNG Tool Preview",
       },
     ],
-    locale: "en_US",
-    type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "SignPNG | Convert Signature Image to Transparent PNG Online",
-    description: "Remove white backgrounds from signatures in your browser.",
+    title: "SignPNG - Convert Signature to PNG",
+    description: "Remove signature background in seconds.",
     images: ["/og-image.png"],
+  },
+  icons: {
+    icon: "/favicon.ico",
   },
 };
 
@@ -75,7 +83,16 @@ export default function RootLayout({ children }) {
           </nav>
         </header>
 
-        <main style={{ flex: 1, paddingTop: "100px" }}>{children}</main>
+        <main
+          style={{
+            minHeight: "100vh",
+            display: "flex",
+            flexDirection: "column",
+            paddingTop: "100px",
+          }}
+        >
+          {children}
+        </main>
 
         <footer style={footerStyle}>
           <div className="glass" style={footerContentStyle}>
@@ -89,24 +106,19 @@ export default function RootLayout({ children }) {
             </div>
             <div style={footerLinksContainer}>
               <div style={footerCol}>
-                <h4>Product</h4>
+                <h4 style={{ color: "white", marginBottom: "12px" }}>
+                  Product
+                </h4>
                 <a href="/signature-to-png">Converter</a>
                 <a href="/blog">Guides</a>
               </div>
               <div style={footerCol}>
-                <h4>Legal</h4>
+                <h4 style={{ color: "white", marginBottom: "12px" }}>Legal</h4>
                 <a href="/privacy">Privacy Policy</a>
               </div>
             </div>
           </div>
-          <p
-            style={{
-              textAlign: "center",
-              marginTop: "40px",
-              color: "var(--text-dim)",
-              fontSize: "0.8rem",
-            }}
-          >
+          <p style={copyrightStyle}>
             © {new Date().getFullYear()} SignPNG. Fast, Free, Secure.
           </p>
         </footer>
@@ -121,11 +133,12 @@ export default function RootLayout({ children }) {
             transition: var(--transition);
             font-size: 0.95rem;
           }
-          .nav-link:hover {
-            color: var(--primary);
+          .nav-link:hover { color: var(--primary); }
+          footer a { color: var(--text-dim); text-decoration: none; font-size: 0.9rem; transition: var(--transition); }
+          footer a:hover { color: var(--primary); }
+          @media (max-width: 768px) {
+            header nav div:nth-child(2) { display: none; }
           }
-          h4 { margin-bottom: 12px; font-size: 1rem; color: white; }
-          ${footerStyles}
         `,
           }}
         />
@@ -134,6 +147,7 @@ export default function RootLayout({ children }) {
   );
 }
 
+// --- Styles ---
 const headerStyle = {
   position: "fixed",
   top: "20px",
@@ -144,7 +158,6 @@ const headerStyle = {
   display: "flex",
   justifyContent: "center",
 };
-
 const navStyle = {
   width: "100%",
   maxWidth: "1200px",
@@ -153,7 +166,6 @@ const navStyle = {
   alignItems: "center",
   justifyContent: "space-between",
 };
-
 const logoStyle = {
   fontSize: "1.5rem",
   fontWeight: "700",
@@ -163,7 +175,6 @@ const logoStyle = {
   alignItems: "center",
   gap: "10px",
 };
-
 const logoDot = {
   width: "12px",
   height: "12px",
@@ -171,19 +182,13 @@ const logoDot = {
   borderRadius: "50%",
   boxShadow: "0 0 10px var(--primary-glow)",
 };
-
-const navLinksStyle = {
-  display: "flex",
-  gap: "32px",
-};
-
+const navLinksStyle = { display: "flex", gap: "32px" };
 const footerStyle = {
   padding: "80px 20px 40px",
   maxWidth: "1200px",
   margin: "0 auto",
   width: "100%",
 };
-
 const footerContentStyle = {
   padding: "40px",
   display: "flex",
@@ -191,22 +196,11 @@ const footerContentStyle = {
   flexWrap: "wrap",
   gap: "40px",
 };
-
-const footerLinksContainer = {
-  display: "flex",
-  gap: "60px",
+const footerLinksContainer = { display: "flex", gap: "60px" };
+const footerCol = { display: "flex", flexDirection: "column", gap: "10px" };
+const copyrightStyle = {
+  textAlign: "center",
+  marginTop: "40px",
+  color: "var(--text-dim)",
+  fontSize: "0.8rem",
 };
-
-const footerCol = {
-  display: "flex",
-  flexDirection: "column",
-  gap: "10px",
-};
-
-const footerStyles = `
-  footer a { color: var(--text-dim); text-decoration: none; font-size: 0.9rem; transition: var(--transition); }
-  footer a:hover { color: var(--primary); }
-  @media (max-width: 768px) {
-    header nav div:nth-child(2) { display: none; }
-  }
-`;

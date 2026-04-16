@@ -1,10 +1,7 @@
+import { MetadataRoute } from 'next'
 export default function robots() {
   return {
-    rules: {
-      userAgent: '*',
-      allow: '/',
-      disallow: '/private/',
-    },
-    sitemap: 'https://signpng.com/sitemap.xml',
-  };
+    rules: { userAgent: '*', allow: '/' },
+    sitemap: 'https://signpng.vercel.app/sitemap.xml',
+  }
 }
