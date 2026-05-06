@@ -1,10 +1,10 @@
-"use client";
 import { notFound } from "next/navigation";
-import { use } from "react";
 
 const BLOG_POSTS = {
   "create-professional-digital-signature": {
     title: "How to Create a Professional Digital Signature at Home",
+    description: "Learn how to turn a handwritten signature into a high-quality digital asset for all your documents with our step-by-step guide.",
+    keywords: ["create digital signature", "handwritten to digital", "professional signature tutorial"],
     date: "April 10, 2026",
     content: `
       <p>In today's digital world, having a professional signature for your PDF documents, contracts, and emails is essential. But how do you turn a pen-on-paper signature into a high-quality digital asset?</p>
@@ -24,6 +24,8 @@ const BLOG_POSTS = {
   },
   "why-transparent-signatures-matter": {
     title: "Why Your Business Needs Transparent Signature PNGs",
+    description: "Discover why transparent signatures are superior to JPEGs for professional branding and document security.",
+    keywords: ["transparent signature benefits", "professional branding", "digital signature security"],
     date: "April 12, 2026",
     content: `
       <p>Using a standard JPEG for your signature often results in an ugly white box that overlaps your document's signature lines. This looks unprofessional and amateurish.</p>
@@ -40,6 +42,8 @@ const BLOG_POSTS = {
   },
   "digital-signature-security-guide": {
     title: "The Ultimate Guide to Digital Signature Security",
+    description: "Protect your digital identity. Learn the best practices for securing and storing your digital signatures.",
+    keywords: ["digital signature security", "protect digital signature", "signature privacy guide"],
     date: "April 14, 2026",
     content: `
       <p>Digital security is more important than ever. Your signature is a key part of your legal identity, and protecting it should be your top priority.</p>
@@ -56,14 +60,27 @@ const BLOG_POSTS = {
   },
 };
 
-export default function BlogPost({ params }) {
-  // Unwrap the Promise using React.use()
-  const { slug } = use(params);
-
-  // Get the blog post data
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
   const post = BLOG_POSTS[slug];
 
-  // If post doesn't exist, show 404
+  if (!post) {
+    return {
+      title: 'Post Not Found',
+    };
+  }
+
+  return {
+    title: post.title,
+    description: post.description,
+    keywords: post.keywords,
+  };
+}
+
+export default async function BlogPost({ params }) {
+  const { slug } = await params;
+  const post = BLOG_POSTS[slug];
+
   if (!post) {
     notFound();
   }
@@ -220,3 +237,4 @@ const ctaSection = {
   alignItems: "center",
   gap: "20px",
 };
+

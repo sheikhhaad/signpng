@@ -1,14 +1,73 @@
 import "./globals.css";
-import Script from "next/script";
+
+const siteConfig = {
+  name: "SignPNG",
+  url: "https://signpng.vercel.app",
+  description: "The fastest, most secure way to convert your handwritten signatures to high-quality transparent PNGs. Processed 100% in your browser.",
+  keywords: ["signature to png", "transparent signature", "handwritten signature to digital", "remove signature background", "online signature converter"],
+};
 
 export const metadata = {
-  title: "SignPNG | Convert Signature to Transparent PNG Online (Free)",
-  description:
-    "Convert your handwritten signature to a transparent PNG instantly.",
-  metadataBase: new URL("https://signpng.vercel.app"),
+  title: {
+    default: "SignPNG | Convert Signature to Transparent PNG Online (Free)",
+    template: `%s | SignPNG`
+  },
+  description: siteConfig.description,
+  keywords: siteConfig.keywords,
+  authors: [{ name: "SignPNG Team" }],
+  creator: "SignPNG",
+  metadataBase: new URL(siteConfig.url),
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: siteConfig.url,
+    title: "SignPNG | Convert Signature to Transparent PNG Online (Free)",
+    description: siteConfig.description,
+    siteName: siteConfig.name,
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "SignPNG - Convert Signature to Transparent PNG",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "SignPNG | Convert Signature to Transparent PNG Online (Free)",
+    description: siteConfig.description,
+    images: ["/og-image.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
 
 export default function RootLayout({ children }) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "SignPNG",
+    "url": "https://signpng.vercel.app",
+    "description": siteConfig.description,
+    "applicationCategory": "MultimediaApplication",
+    "operatingSystem": "All",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  };
+
   return (
     <html lang="en">
       <head>
@@ -19,8 +78,12 @@ export default function RootLayout({ children }) {
           crossOrigin="anonymous"
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@400;600;800&display=swap"
           rel="stylesheet"
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
 
@@ -30,202 +93,174 @@ export default function RootLayout({ children }) {
         <div className="bg-grid"></div>
 
         {/* Header */}
-        <header style={headerStyle}>
-          <nav className="glass" style={navStyle}>
-            <a href="/" style={logoStyle}>
-              <span style={logoDot}></span>
-              SignPNG
+        <header className="main-header">
+          <nav className="glass nav-container">
+            <a href="/" className="logo">
+              <div className="logo-icon"></div>
+              <span>SignPNG</span>
             </a>
 
-            <div style={navLinksStyle}>
-              <a href="/signature-to-png" className="nav-link">
-                Tool
-              </a>
-              <a href="/blog" className="nav-link">
-                Blog
-              </a>
-              <a href="/contact" className="nav-link">
-                Contact
-              </a>
+            <div className="nav-links">
+              <a href="/signature-to-png" className="nav-link">Tool</a>
+              <a href="/blog" className="nav-link">Blog</a>
+              <a href="/contact" className="nav-link">Contact</a>
             </div>
 
-            <a href="/signature-to-png" className="glow-btn">
-              Use Tool
-            </a>
+            <div className="nav-actions">
+              <a href="/signature-to-png" className="glow-btn">
+                Start Now
+              </a>
+            </div>
           </nav>
         </header>
 
-        {/* Main */}
-        <main
-          style={{
-            minHeight: "100vh",
-            display: "flex",
-            flexDirection: "column",
-            paddingTop: "100px",
-          }}
-        >
+        {/* Main Content */}
+        <main className="main-content">
           {children}
         </main>
 
-        {/* -------- ADS START -------- */}
-
-        {/* Script 1 */}
-        <Script
-          src="https://pl29225045.profitablecpmratenetwork.com/2a/87/df/2a87df58e98a9202470e8ae8d7d41fde.js"
-          strategy="afterInteractive"
-        />
-
-        {/* Banner Ad */}
-        <div id="container-banner-1"></div>
-
-        <Script id="ad-options-1" strategy="afterInteractive">
-          {`
-            var atOptions = {
-              key: '201b10fd8fd9eb4718c10ff78c95e4e8',
-              format: 'iframe',
-              height: 50,
-              width: 320,
-              params: {}
-            };
-          `}
-        </Script>
-
-        <Script
-          src="https://www.highperformanceformat.com/201b10fd8fd9eb4718c10ff78c95e4e8/invoke.js"
-          strategy="afterInteractive"
-        />
-
-        {/* Sidebar Ad */}
-        <div id="container-sidebar-1"></div>
-
-        <Script id="ad-options-2" strategy="afterInteractive">
-          {`
-            var atOptions = {
-              key: 'a61324938c0e42ee0bacea14f604120b',
-              format: 'iframe',
-              height: 300,
-              width: 160,
-              params: {}
-            };
-          `}
-        </Script>
-
-        <Script
-          src="https://www.highperformanceformat.com/a61324938c0e42ee0bacea14f604120b/invoke.js"
-          strategy="afterInteractive"
-        />
-
-        {/* Large Skyscraper Ad */}
-        <div id="container-sidebar-2"></div>
-
-        <Script id="ad-options-3" strategy="afterInteractive">
-          {`
-            var atOptions = {
-              key: '19dc376f584de9f6dd1c5a200811c609',
-              format: 'iframe',
-              height: 600,
-              width: 160,
-              params: {}
-            };
-          `}
-        </Script>
-
-        <Script
-          src="https://www.highperformanceformat.com/19dc376f584de9f6dd1c5a200811c609/invoke.js"
-          strategy="afterInteractive"
-        />
-
-        {/* -------- ADS END -------- */}
-
         {/* Footer */}
-        <footer style={footerStyle}>
-          <div className="glass" style={footerContentStyle}>
-            <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-              <div style={logoStyle}>SignPNG</div>
-              <p style={{ color: "var(--text-dim)", fontSize: "0.9rem" }}>
-                Fast signature background remover.
+        <footer className="footer">
+          <div className="glass footer-content">
+            <div className="footer-info">
+              <div className="logo" style={{ marginBottom: '15px' }}>
+                <div className="logo-icon"></div>
+                SignPNG
+              </div>
+              <p className="footer-desc">
+                The most secure, client-side signature background removal tool. 
+                Your privacy is our priority.
               </p>
             </div>
 
-            <div style={footerLinksContainer}>
-              <div style={footerCol}>
-                <h4 style={{ color: "white" }}>Product</h4>
+            <div className="footer-links-grid">
+              <div className="footer-col">
+                <h5>Product</h5>
                 <a href="/signature-to-png">Converter</a>
+                <a href="/blog">Guides</a>
               </div>
-              <div style={footerCol}>
-                <h4 style={{ color: "white" }}>Legal</h4>
+              <div className="footer-col">
+                <h5>Company</h5>
+                <a href="/contact">Support</a>
                 <a href="/privacy">Privacy</a>
               </div>
             </div>
           </div>
 
-          <p style={copyrightStyle}>
-            © {new Date().getFullYear()} SignPNG
-          </p>
+          <div className="copyright">
+            <p>© {new Date().getFullYear()} SignPNG. All rights reserved.</p>
+          </div>
         </footer>
 
-        {/* Styles */}
-        <style
-          dangerouslySetInnerHTML={{
-            __html: `
-            .nav-link { color: white; text-decoration: none; }
-            .nav-link:hover { color: var(--primary); }
-          `,
-          }}
-        />
+        {/* Global Inline Styles for Layout Components */}
+        <style dangerouslySetInnerHTML={{ __html: `
+          .main-header {
+            position: fixed;
+            top: 20px;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 0 20px;
+            display: flex;
+            justify-content: center;
+          }
+          .nav-container {
+            width: 100%;
+            max-width: 1200px;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+          }
+          .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: white;
+          }
+          .logo-icon {
+            width: 12px;
+            height: 12px;
+            background: var(--primary);
+            border-radius: 50%;
+            box-shadow: 0 0 15px var(--primary-glow);
+          }
+          .nav-links {
+            display: flex;
+            gap: 32px;
+          }
+          .nav-link {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            font-size: 0.95rem;
+          }
+          .nav-link:hover {
+            color: var(--primary);
+          }
+          .main-content {
+            min-height: 100vh;
+            padding-top: 120px;
+          }
+          .footer {
+            padding: 80px 20px 40px;
+          }
+          .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 40px;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 60px;
+          }
+          .footer-desc {
+            color: var(--text-dim);
+            max-width: 320px;
+            line-height: 1.7;
+          }
+          .footer-links-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+          }
+          .footer-col h5 {
+            color: white;
+            font-size: 1.1rem;
+            margin-bottom: 24px;
+            font-family: 'Outfit', sans-serif;
+          }
+          .footer-col a {
+            display: block;
+            color: var(--text-dim);
+            text-decoration: none;
+            margin-bottom: 12px;
+            transition: var(--transition);
+          }
+          .footer-col a:hover {
+            color: var(--primary);
+          }
+          .copyright {
+            text-align: center;
+            margin-top: 40px;
+            color: var(--text-dim);
+            font-size: 0.9rem;
+          }
+
+          @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .footer-content {
+              grid-template-columns: 1fr;
+              padding: 40px 24px;
+              gap: 40px;
+            }
+          }
+        `}} />
       </body>
     </html>
   );
-}
-
-/* Styles */
-const headerStyle = {
-  position: "fixed",
-  top: "20px",
-  left: "0",
-  right: "0",
-  zIndex: 100,
-  display: "flex",
-  justifyContent: "center",
-};
-
-const navStyle = {
-  width: "100%",
-  maxWidth: "1200px",
-  display: "flex",
-  justifyContent: "space-between",
-};
-
-const logoStyle = {
-  color: "white",
-  display: "flex",
-  alignItems: "center",
-  gap: "10px",
-};
-
-const logoDot = {
-  width: "10px",
-  height: "10px",
-  background: "blue",
-  borderRadius: "50%",
-};
-
-const navLinksStyle = { display: "flex", gap: "20px" };
-
-const footerStyle = {
-  padding: "60px 20px",
-};
-
-const footerContentStyle = {
-  display: "flex",
-  justifyContent: "space-between",
-};
-
-const footerLinksContainer = { display: "flex", gap: "40px" };
-
-const footerCol = { display: "flex", flexDirection: "column" };
-
-const copyrightStyle = {
-  textAlign: "center",
-  marginTop: "20px",
-};
+}
