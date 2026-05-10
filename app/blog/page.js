@@ -1,182 +1,110 @@
+import Link from "next/link";
+
 export const metadata = {
-  title: 'Digital Signature Guides & Professional Branding Tips',
-  description: 'Expert guides on digital signatures, professional branding, and document security. Learn how to optimize your digital signature for a professional workflow.',
-  keywords: ['digital signature guides', 'professional signature tips', 'document security', 'electronic signature branding', 'handwritten to digital signature tutorial'],
+  title: "Digital Signature Guides & Professional Branding Tips",
+  description:
+    "Expert guides on digital signatures, professional branding, and document security. Learn how to optimize your digital signature for a professional workflow.",
+  keywords: [
+    "digital signature guides",
+    "professional signature tips",
+    "document security",
+    "electronic signature branding",
+    "handwritten to digital signature tutorial",
+  ],
 };
 
 const BLOG_POSTS = [
   {
     title: "How to Create a Professional Digital Signature at Home",
     slug: "create-professional-digital-signature",
-    excerpt: "Learn how to turn a handwritten signature into a high-quality digital asset for all your documents.",
+    excerpt:
+      "Learn how to turn a handwritten signature into a high-quality digital asset for all your documents.",
     date: "April 10, 2026",
     category: "Tutorial",
-    image: "✍️"
+    image: "✍️",
   },
   {
     title: "Why Your Business Needs Transparent Signature PNGs",
     slug: "why-transparent-signatures-matter",
-    excerpt: "Discover the benefits of using transparent PNGs over JPEG for professional document signing.",
+    excerpt:
+      "Discover the benefits of using transparent PNGs over JPEG for professional document signing.",
     date: "April 12, 2026",
     category: "Business",
-    image: "💼"
+    image: "💼",
   },
   {
     title: "The Ultimate Guide to Digital Signature Security",
     slug: "digital-signature-security-guide",
-    excerpt: "Everything you need to know about keeping your digital identity safe while signing online.",
+    excerpt:
+      "Everything you need to know about keeping your digital identity safe while signing online.",
     date: "April 14, 2026",
     category: "Security",
-    image: "🔒"
-  }
+    image: "🔒",
+  },
 ];
 
 export default function BlogPage() {
   return (
-    <div className="blog-container">
-      <div className="blog-header animate-fade-in">
-        <h1 className="blog-title">The SignPNG <span className="text-gradient">Blog</span></h1>
-        <p className="blog-sub">Master your digital workflow with our expert guides and technical tips.</p>
+    <div className="max-w-6xl mx-auto px-5 py-10">
+      <div className="text-center mb-16 animate-fade-in">
+        <h1 className="font-outfit text-5xl md:text-6xl font-extrabold text-white mb-4">
+          The SignPNG <span className="text-gradient">Blog</span>
+        </h1>
+        <p className="text-xl text-text-dim max-w-2xl mx-auto">
+          Master your digital workflow with our expert guides and technical
+          tips.
+        </p>
       </div>
 
-      <div className="blog-grid">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {BLOG_POSTS.map((post, index) => (
-          <a 
-            key={post.slug} 
-            href={`/blog/${post.slug}`} 
-            className="glass glass-hover blog-card animate-fade-in"
+          <Link
+            key={post.slug}
+            href={`/blog/${post.slug}`}
+            className="glass glass-hover p-8 flex flex-col gap-6 no-underline animate-fade-in group"
             style={{ animationDelay: `${0.1 * (index + 1)}s` }}
           >
-            <div className="card-top">
-              <div className="post-icon">{post.image}</div>
-              <span className="post-category">{post.category}</span>
-            </div>
-            <div className="post-content">
-              <div className="post-meta">
-                <span className="post-date">{post.date}</span>
+            <div className="flex justify-between items-start">
+              <div className="text-4xl w-16 h-16 bg-white/3 rounded-2xl flex items-center justify-center transition-all group-hover:bg-white/10">
+                {post.image}
               </div>
-              <h2 className="post-title">{post.title}</h2>
-              <p className="post-excerpt">{post.excerpt}</p>
-              <div className="read-more">
+              <span className="text-[10px] font-extrabold text-primary uppercase tracking-[2px] px-3 py-1.5 bg-primary/10 rounded-full border border-primary/20">
+                {post.category}
+              </span>
+            </div>
+            <div>
+              <div className="mb-3">
+                <span className="text-text-dim text-xs font-semibold">
+                  {post.date}
+                </span>
+              </div>
+              <h2 className="text-white text-2xl font-outfit font-extrabold mb-4 leading-tight transition-all group-hover:text-primary">
+                {post.title}
+              </h2>
+              <p className="text-text-dim leading-relaxed mb-6 line-clamp-3">
+                {post.excerpt}
+              </p>
+              <div className="flex items-center gap-2 text-white font-bold text-sm">
                 <span>Read Article</span>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                <svg
+                  className="transition-all duration-300 group-hover:translate-x-1"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
               </div>
             </div>
-          </a>
+          </Link>
         ))}
       </div>
-
-      <style dangerouslySetInnerHTML={{ __html: `
-        .blog-container {
-          max-width: 1200px;
-          margin: 0 auto;
-          padding: 40px 20px 120px;
-        }
-        .blog-header {
-          text-align: center;
-          margin-bottom: 80px;
-        }
-        .blog-title {
-          font-family: 'Outfit', sans-serif;
-          font-size: 3.5rem;
-          font-weight: 800;
-          color: white;
-          margin-bottom: 16px;
-        }
-        .text-gradient {
-          background: linear-gradient(to right, var(--primary), var(--secondary));
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-        }
-        .blog-sub {
-          font-size: 1.1rem;
-          color: var(--text-dim);
-          max-width: 600px;
-          margin: 0 auto;
-        }
-        .blog-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-          gap: 32px;
-        }
-        .blog-card {
-          padding: 32px;
-          display: flex;
-          flex-direction: column;
-          gap: 24px;
-          text-decoration: none;
-        }
-        .card-top {
-          display: flex;
-          justify-content: space-between;
-          align-items: flex-start;
-        }
-        .post-icon {
-          font-size: 2.5rem;
-          width: 70px;
-          height: 70px;
-          background: rgba(255,255,255,0.03);
-          border-radius: 20px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-        .post-category {
-          font-size: 0.75rem;
-          font-weight: 800;
-          color: var(--primary);
-          text-transform: uppercase;
-          letter-spacing: 1.5px;
-          padding: 6px 12px;
-          background: rgba(34, 211, 238, 0.1);
-          border-radius: 100px;
-          border: 1px solid rgba(34, 211, 238, 0.2);
-        }
-        .post-meta {
-          margin-bottom: 12px;
-        }
-        .post-date {
-          font-size: 0.85rem;
-          color: var(--text-dim);
-          font-weight: 500;
-        }
-        .post-title {
-          font-family: 'Outfit', sans-serif;
-          font-size: 1.5rem;
-          font-weight: 800;
-          color: white;
-          margin-bottom: 12px;
-          line-height: 1.3;
-          transition: var(--transition);
-        }
-        .blog-card:hover .post-title {
-          color: var(--primary);
-        }
-        .post-excerpt {
-          color: var(--text-dim);
-          line-height: 1.7;
-          margin-bottom: 24px;
-        }
-        .read-more {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          color: white;
-          font-weight: 700;
-          font-size: 0.95rem;
-        }
-        .read-more svg {
-          transition: transform 0.3s ease;
-        }
-        .blog-card:hover .read-more svg {
-          transform: translateX(5px);
-        }
-
-        @media (max-width: 768px) {
-          .blog-title { font-size: 2.5rem; }
-          .blog-grid { grid-template-columns: 1fr; }
-        }
-      `}} />
     </div>
   );
 }
